@@ -22,7 +22,7 @@ const Login = () => {
 
       const response = await axios.post(
 
-        "http://localhttps://ai-finance-assistant-h0bd.onrender.comhost:5000/api/auth/login",
+        "https://ai-finance-assistant-h0bd.onrender.com/api/auth/login",
 
         {
           email,
