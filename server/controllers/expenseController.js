@@ -12,7 +12,8 @@ const addExpense = async (req, res) => {
 
       title,
       amount,
-      category
+      category,
+      user: req.user.id
 
     });
 
@@ -28,13 +29,14 @@ const addExpense = async (req, res) => {
 };
 
 
-// GET ALL EXPENSES
+// GET USER EXPENSES
 const getExpenses = async (req, res) => {
 
   try {
 
-    const expenses = await Expense.find()
-      .sort({ createdAt: -1 });
+    const expenses = await Expense.find({
+      user: req.user.id
+    }).sort({ createdAt: -1 });
 
     res.status(200).json(expenses);
 
