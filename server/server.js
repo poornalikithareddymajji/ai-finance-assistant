@@ -14,9 +14,11 @@ connectDB();
 
 // MIDDLEWARE
 app.use(cors({
-  origin: "https://ai-finance-assistant-i2lq.vercel.app",
-  credentials: true
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
+app.options("*", cors());
 app.use(express.json());
 
 // AUTH ROUTES
