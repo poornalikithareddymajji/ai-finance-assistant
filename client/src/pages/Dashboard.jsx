@@ -7,7 +7,7 @@ import axios from "axios";
 
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
-import Chatbot from "../components/Chatbot";
+import ChatBot from "../components/Chatbot";
 import ExpenseChart from "../components/ExpenseChart";
 
 const Dashboard = () => {
@@ -262,7 +262,7 @@ const Dashboard = () => {
           className="mt-10"
         >
 
-          <Chatbot />
+          <ChatBot />
 
         </div>
 
