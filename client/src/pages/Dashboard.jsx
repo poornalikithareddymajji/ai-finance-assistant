@@ -26,7 +26,7 @@ const Dashboard = () => {
     try {
 
       const response = await axios.get(
-        "http://localhost:5000/api/expenses"
+        "https://ai-finance-assistant-h0bd.onrender.com/api/expenses"
       );
 
       // SAVE TO STATE
@@ -64,7 +64,7 @@ const Dashboard = () => {
     try {
 
       await axios.post(
-        "http://localhost:5000/api/expenses",
+        "https://ai-finance-assistant-h0bd.onrender.com/api/expenses",
         {
           title,
           amount,
