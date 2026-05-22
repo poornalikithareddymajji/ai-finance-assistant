@@ -20,19 +20,25 @@ const Dashboard = () => {
 
   const [expenses, setExpenses] = useState([]);
 
+  // GET TOKEN
+  const token = localStorage.getItem("token");
+
   // FETCH EXPENSES
   const fetchExpenses = async () => {
 
     try {
 
       const response = await axios.get(
-        "https://ai-finance-assistant-h0bd.onrender.com/api/expenses"
+        "https://ai-finance-assistant-h0bd.onrender.com/api/expenses",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
       );
 
-      // SAVE TO STATE
       setExpenses(response.data);
 
-      // SAVE TO LOCAL STORAGE
       localStorage.setItem(
         "expenses",
         JSON.stringify(response.data)
@@ -69,15 +75,18 @@ const Dashboard = () => {
           title,
           amount,
           category
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
         }
       );
 
-      // CLEAR INPUTS
       setTitle("");
       setAmount("");
       setCategory("");
 
-      // REFRESH DATA
       fetchExpenses();
 
     } catch (error) {
@@ -91,19 +100,15 @@ const Dashboard = () => {
 
     <div className="min-h-screen bg-slate-950 text-white flex">
 
-      {/* SIDEBAR */}
       <Sidebar />
 
-      {/* MAIN CONTENT */}
       <div
         id="dashboard"
         className="flex-1 p-8 overflow-y-auto"
       >
 
-        {/* NAVBAR */}
         <Navbar />
 
-        {/* HEADER */}
         <div className="flex justify-between items-center mt-8 mb-10">
 
           <div>
@@ -118,7 +123,6 @@ const Dashboard = () => {
 
           </div>
 
-          {/* LOGOUT */}
           <button
             onClick={() => {
 
@@ -134,7 +138,6 @@ const Dashboard = () => {
 
         </div>
 
-        {/* ADD EXPENSE */}
         <div
           id="expenses"
           className="bg-slate-900 p-6 rounded-3xl mb-10 shadow-xl"
@@ -149,7 +152,6 @@ const Dashboard = () => {
             className="grid lg:grid-cols-4 gap-4"
           >
 
-            {/* TITLE */}
             <input
               type="text"
               placeholder="Expense Title"
@@ -160,7 +162,6 @@ const Dashboard = () => {
               className="p-4 rounded-2xl bg-slate-800 border border-slate-700 outline-none focus:border-blue-500"
             />
 
-            {/* AMOUNT */}
             <input
               type="number"
               placeholder="Amount"
@@ -171,7 +172,6 @@ const Dashboard = () => {
               className="p-4 rounded-2xl bg-slate-800 border border-slate-700 outline-none focus:border-blue-500"
             />
 
-            {/* CATEGORY */}
             <input
               type="text"
               placeholder="Category"
@@ -182,7 +182,6 @@ const Dashboard = () => {
               className="p-4 rounded-2xl bg-slate-800 border border-slate-700 outline-none focus:border-blue-500"
             />
 
-            {/* BUTTON */}
             <button
               onClick={addExpense}
               className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl font-semibold hover:scale-105 duration-300"
@@ -194,10 +193,8 @@ const Dashboard = () => {
 
         </div>
 
-        {/* EXPENSES + REPORTS */}
         <div className="grid lg:grid-cols-2 gap-8">
 
-          {/* EXPENSE LIST */}
           <div className="bg-slate-900 p-6 rounded-3xl shadow-xl">
 
             <h2 className="text-2xl font-bold mb-6">
@@ -247,7 +244,6 @@ const Dashboard = () => {
 
           </div>
 
-          {/* REPORTS */}
           <div id="reports">
 
             <ExpenseChart expenses={expenses} />
@@ -256,7 +252,6 @@ const Dashboard = () => {
 
         </div>
 
-        {/* CHATBOT */}
         <div
           id="chatbot"
           className="mt-10"
