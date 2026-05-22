@@ -13,7 +13,10 @@ const app = express();
 connectDB();
 
 // MIDDLEWARE
-app.use(cors());
+app.use(cors({
+  origin: "https://ai-finance-assistant-i2lq.vercel.app",
+  credentials: true
+}));
 app.use(express.json());
 
 // AUTH ROUTES
