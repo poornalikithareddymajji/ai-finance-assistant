@@ -7,7 +7,7 @@ import axios from "axios";
 
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
-import ChatBot from "../components/Chatbot";
+import ChatBot from "../components/ChatBot";
 import ExpenseChart from "../components/ExpenseChart";
 
 const Dashboard = () => {
